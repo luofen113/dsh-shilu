@@ -1,0 +1,17 @@
+# 统一换行，免跨平台噪声
+* text=auto eol=lf
+
+# Windows 脚本仍用 CRLF
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# 二进制
+*.png binary
+*.jpg binary
+*.tgz binary
+*.zstd binary
+
+# git 语言统计：以免文档喧宾夺主
+docs/* linguist-documentation
+yardsticks/* linguist-documentation

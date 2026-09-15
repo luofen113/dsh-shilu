@@ -1,0 +1,43 @@
+# 依赖
+node_modules/
+.pnpm-store/
+
+# 打包产物
+_packed/
+dist/
+*.tgz
+
+# 本机数据与备份（**绝不入仓**）
+*.reg
+*.bak
+*.pre-patch.bak
+*.log
+*.zstd
+*.db
+*.db-wal
+*.db-shm
+sessions/
+storages/
+session_projcache/
+session-search.db*
+
+# 备份与快照目录
+05-注册表备份/
+04-数据快照/
+02-数据/
+06-插件补丁/*/original-*/
+
+# 密钥与配置
+.env
+.env.*
+*.key
+*.pem
+config.local.*
+*secret*
+
+# 编辑器与系统
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+Desktop.ini
