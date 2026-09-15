@@ -1,0 +1,62 @@
+{
+  "name": "dsh-shilu",
+  "version": "0.1.0",
+  "private": true,
+  "description": "📜 DSH 实录素材官：按日取会话事实，出「当日素材摘要」供 agent 执笔；另供 handnote_write 写卷三手记。**不产日稿、不写实录正文、不监听事件流、不代归类。** A day-materials supplier for the DeepSeek Harness.",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "shilu",
+    "chronicle",
+    "materials"
+  ],
+  "_comment": [
+    "=============== dsh-shilu 包清单说明 ===============",
+    "type: module —— 本包是 ESM",
+    "main: lib/index.js —— 宿主半侧入口（Cordis 插件：name/inject/apply）",
+    "lib/rule.js —— 读《实录凡例》（F:\\AI\\DSH\\实录凡例.md）并解析其内嵌 YAML 块；失败则单元不启用",
+    "lib/materials.js —— 按日聚合会话事实（借 dsh-chronicle/lib/replay.mjs 之多帧 zstd 读法）",
+    "lib/handnote.js —— 卷三追加（一事一纸，只增不改）",
+    "dsh.bundle.patch —— 声明本包是 bundle，patch 文件是 cordis.patch.yml",
+    "无 dsh.client —— 两个工具都是 host-only，本包不上界面",
+    "入册之法：**打包成 tgz 再装**（link:/file:-目录皆会被 Node 按 realpath 解析而找不到依赖）",
+    "  pnpm pack --pack-destination ..\\_packed 然后 dsh plugin --profile web add file:<tgz>",
+    "================================================"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./rule": {
+      "default": "./lib/rule.js"
+    },
+    "./materials": {
+      "default": "./lib/materials.js"
+    },
+    "./handnote": {
+      "default": "./lib/handnote.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-tools": "^0.1.0",
+    "yaml": "^2.0.0"
+  }
+}
